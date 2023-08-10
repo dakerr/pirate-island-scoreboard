@@ -1,27 +1,57 @@
-# React + TypeScript + Vite
+Pirate Island - Scoreboard
+===========
+This is a simple scoreboard app that updates in real-time.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Currently, this only updates after a high score is sent from the [game](https://github.com/dakerr/pirate-island-pixijs) but it would be fairly easy to update the scores in-game!
 
-Currently, two official plugins are available:
+## Features
+This project uses:
+- Firebase's Firestore database through their javascript libraries.
+- written in React + Typescript
+- uses TailwindCSS + @material-tailwind for styling
+- builds with Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Purpose
+This is a test platform for experimenting with real-time streams from Firestore.
 
-## Expanding the ESLint configuration
+## How does it work?
+- authenticate anonymously with Firestore. No user & password needed.  The database 
+rules add some security.
+- using a previously created `Document Reference` to the table, grabs a reference to score items.
+- uses that reference to make a query
+- uses the query to set a listener to receive `data-change` events - instead of calling a `get`
+- presents the data in nice React-y table!
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Firestore APIs used
+- initializeApp
+- getFirestore
+- getAuth
+- signInAnonymously
+- collection
+- query
+- onSnapshot
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites
+This project needs `Node.js` and `Yarn` installed on your system.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+## Setup
+```bash
+# Clone the repository
+git clone http://github.com/dakerr/pirate-island-scoreboard
+cd ./pirate-island-scoreboard
+
+# Install dependencies
+yarn
+
+# Start the project
+yarn dev
 ```
+## Demo (available on request)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Known Issues
+Until I setup a GitHub Action to [Create an .env file](https://github.com/marketplace/actions/create-env-file), you will need to setup a Firebase config yourself.  (Not going to commit secrets to GitHub!)  A Firebase API key is required to access the Firestore.  
+
+## License
+[MIT License](https://opensource.org/licenses/MIT)
+
+
