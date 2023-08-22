@@ -11,10 +11,12 @@ function App() {
   }, [scoreboardId]);
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <Scoreboard 
-        scoreboardId={scoreboardId}
-      />
+    <div className="relative min-h-screen flex justify-center items-center">
+      <div className='flex flex-col'>
+        <Scoreboard 
+          scoreboardId={scoreboardId}
+        />
+      </div>
     </div>  
   )
 }
